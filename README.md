@@ -2,11 +2,11 @@
 
 ### Buat tabel di hasura
 
-| Nama Field | Tipe Data | Keterangan                   |
-| ---------- | :-------: | :--------------------------- |
-| id         |  Integer  | Primary Key (Auto Increment) |
-| title      |   Text    |                              |
-| is_done    |  Boolean  |                              |
+| Nama Field | Tipe Data | Nullable | Keterangan                   |
+| ---------- | :-------: | :------: | :--------------------------- |
+| id         |  Integer  |          | Primary Key (Auto Increment) |
+| title      |   Text    |          |                              |
+| is_done    |  Boolean  |   Yes    |                              |
 
 ### Lakukan Konfigurasi Pada File apollo-client.js
 

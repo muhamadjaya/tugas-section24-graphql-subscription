@@ -2,57 +2,27 @@ import { useState } from "react";
 import "./App.css";
 import Todo from "./components/Todo/Todo";
 import LoadingSvg from "./components/LoadingSvg/LoadingSvg";
-// Apollo Client
-import { useQuery, useMutation, useSubscription } from "@apollo/client";
-// Hasura GraphQL Queries
-import { GET_TODOLIST } from "./graphql/Queries/TodoList";
-// Hasura GraphQL Mutations
-import {
-  UPDATE_TODOLIST_BY_ID,
-  DELETE_TODOLIST_BY_ID,
-  INSERT_TODOLIST,
-} from "./graphql/Mutations/TodoList";
-// Hasura GraphQL Subscriptions
-import { GET_TODOLIST_SUBSCRIPTION } from "./graphql/Subscriptions/TodoList";
+
+// custom hooks
+import useSubscriptionTodolist from "./hooks/TodoList/useSubscriptionTodolist";
+import useInsertTodolist from "./hooks/TodoList/useInsertTodolist";
+import useUpdateTodolist from "./hooks/TodoList/useUpdateTodolist";
+import useDeleteTodolist from "./hooks/TodoList/useDeleteTodolist";
 
 const TodoList = () => {
   // const { data, loading, error, refetch } = useQuery(GET_TODOLIST);
 
-  const [insertTodolist, { loading: loadingInsert }] = useMutation(
-    INSERT_TODOLIST,
-    {
-      onCompleted: (data) => {},
-      onError: (error) => {
-        console.log("Error in mutation insert", { error });
-      },
-    }
-  );
+  // useSubscriptionTodolist
+  const { dataSubscription, loadingSubscription } = useSubscriptionTodolist();
 
-  const [updateTodolist, { loading: loadingUpdate }] = useMutation(
-    UPDATE_TODOLIST_BY_ID,
-    {
-      onCompleted: (data) => {},
-      onError: (error) => {
-        console.log("Error in mutation insert", { error });
-      },
-    }
-  );
+  // useInsertTodolist
+  const { insertTodolist, loadingInsert } = useInsertTodolist();
 
-  const [deleteTodolist, { loading: loadingDelete }] = useMutation(
-    DELETE_TODOLIST_BY_ID,
-    {
-      onCompleted: (data) => {},
-      onError: (error) => {
-        console.log("Error in mutation insert", { error });
-      },
-    }
-  );
+  // useUpdateTodolist
+  const { updateTodolist, loadingUpdate } = useUpdateTodolist();
 
-  const {
-    data: dataSubscription,
-    loading: loadingSubscription,
-    error: errorSubscription,
-  } = useSubscription(GET_TODOLIST_SUBSCRIPTION);
+  // useDeleteTodolist
+  const { deleteTodolist, loadingDelete } = useDeleteTodolist();
 
   console.log(dataSubscription);
 
